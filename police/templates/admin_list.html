@@ -15,8 +15,6 @@
               </div>
             </div>
           </div>
-                
-                
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">
@@ -40,10 +38,7 @@
                             <tr>
                               <td>{{ forloop.counter }}</td>
                               <td><a href="{% url 'admin_profile_view' user.pk %} ">{{ user.username }}</a></td> 
-                                
-
                               <td>{{ user.last_login }}</td>
-                              
                               <td>{{ user.date_joined }}</td>
                               <td>{{ user.policeprofile.police_id }}</td>
                               <td>{{ user.policeprofile.phone_number }}</td>
@@ -51,11 +46,7 @@
                         </tbody>
                             {% endfor %}
                       </table>
-                            
-                       
-
                     </div>
-                    
                   </div>
                 </div>
               </div>
