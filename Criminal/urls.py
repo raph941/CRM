@@ -21,8 +21,6 @@ urlpatterns = [
     url(r"^CrimeList/$", views.CrimeListView.as_view(), name="crime_list"),
     url(r"^NewCrime/$", views.NewCrimeView, name="new_crime"),
     url(r"^CrimeList/CrimeDetail/(?P<pk>\d+)/$", views.CrimeDetailView.as_view(), name="crime_detail"),
-
-
     url(r"^SearchBiometrics/$", views.SearchBiometrics, name="search_biometrics"),
     url(r"^NewBiometrics/$", views.NewBiometrics, name="new_biometrics"),
 ]
