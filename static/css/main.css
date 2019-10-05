@@ -1,0 +1,31 @@
+.label{
+  font-weight:bold;
+  }
+.text_box{
+
+  overflow:auto;
+  background-color:#dddce1;
+  color:#212529;
+  scrollbar-base-color:gold;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: lighter;
+  padding:10px;
+  margin-bottom: 30px;
+  margin-bottom: 30px;
+}
+.profile_section{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  }
+.card_text_styled{
+  font-family: "Courier New", Courier, monospace;
+  font-weight: lighter;
+}
+.search_text{
+  text-align: center;
+}
+.search_list{
+  padding: 50;
+  background-color: grey;
+  
+}

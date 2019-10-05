@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+.label{
+  font-weight:bold;
+  }
+
+
+</style>
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Criminals</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12  justify-content-center">
+                      <p class="card-title">Pictures</p>
+                        {% if criminal.criminalimage %}
+                          <span>
+                            <img class="img-circle" src='{{ criminal.criminalimage.image1.url }}' alt='{{ criminal.criminalimage.image1.url }}'>
+                            <img class="img-rounded" src='{{ criminal.criminalimage.image2.url }}' alt='{{ criminal.criminalimage.image2.url }}'>
+                          </span>
+                    
+                        {% else %}
+                        <a href="{% url 'upload_criminal_pic' criminal.pk %}">
+                          <button class='btn btn-primary btn-small'>Upload</button>
+                        </a>
+                      {% endif %}
+                      
+
+                    <p class="card-title">Bio Information</p>
+                      <table class="table col-12">
+                            <tr>
+                              <td class="label">Name:</td><td>{{ criminal.first_name }} {{ criminal.middle_name }} {{ criminal.last_name }} </td>
+                              <td class="label">Phone:</td><td>{{ criminal.phone_number }}</td>
+                            </tr>
+                            <tr>
+                              <td class="label">Aliases:</td><td>{{ criminal.aliases}}</td>
+                              <td class="label">Email:</td><td>{{ criminal.email }}</td>
+                            </tr>
+                            <tr>
+                              <td class="label">Date Of Birth:</td><td>{{ criminal.date_of_birth }}</td>
+                              <td class="label">sex:</td><td>{{ criminal.sex }}</td>
+                            </tr>
+                            <tr>
+                              <td class="label">Height:</td><td>{{ criminal.height }}</td>
+                              <td class="label">Native Country:</td><td>{{ criminal.nationality }}</td>
+                            </tr>
+                            <tr>
+                              <td class="label">Weigth:</td><td>{{ criminal.weight }}</td>
+                              <td class="label">Known Residence:</td><td>{{ criminal.residence }}</td>
+                            </tr>
+                    </table>
+                  
+                <div class = "profile_section" >
+                  <p class="card-title">Crimes Commited</p>
+                         {% if criminal.crime.count %}
+                            <table class="table col-12">
+                              {% for crime in criminal.crime.all %}
+                                <tr>
+                                  <td class="label">Case No:</td><td>{{ crime.pk }}</td>
+                                  <td class="label">Type:</td><td>{{ crime.type }}</td>
+                                  <td class="label">Punishment:</td><td>{{ crime.verdict }}</td> 
+                                </tr>
+                              {% endfor %}
+                            </table>
+                          {% else %}
+                            <a href="">
+                              <button class='btn btn-primary btn-small'>Add Crime</button>
+                            </a>
+                         {% endif %}   
+                </div>
+                
+                <div>
+                  <p class="card-title">Biometrics</p>
+                    
+                        <a href="#">
+                      
+                        <button class='btn btn-primary btn-small'>Upload Biometrics</button>
+                        </a>
+                </div>
+
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

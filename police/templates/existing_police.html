@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">User List</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <p class="card-title">Choose user type to view</p>
+                  <div class="row">
+                    <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-center">
+                      <div>
+                      <a href="{% url 'admin_list' %}">
+                        <button class='btn btn-primary'>Administrators</button>
+                      </a>
+                      </div>
+
+                      <div style='margin-top:20px;'>
+                      <a href="{% url 'police_list' %}">
+                        <button class='btn btn-primary'>Police Officers</button>
+                      </a>
+                      </div>
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Home</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <p class="card-title"> Crime and Criminal Database</p>
+                  <p card_text_styled> Hello, {{ request.user.username }} </P>
+                  <div class="row">
+                    <div class="col-md-12 col-xl-12 d-flex flex-column justify-content-center">
+                      <form method = "get" action="{% url 'search_results' %}">
+                        <div class="form-group">
+                          <div class="input-group col-md-12 col-xl-8">
+                            <input type="text" name='q' class="form-control" placeholder="Search Criminal " >
+                              <div class="input-group-append">
+                                <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                              </div>
+                          </div>
+                        </div>
+                      </form>
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

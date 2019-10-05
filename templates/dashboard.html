@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Dashboard</h4>
+                </div>
+              </div>
+            </div>
+          </div>      
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <p class="card-title">Crime Record Management</p>
+                  <div class="row">
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <p class="card-title text-md-center text-xl-left">Crime Statistics</p>
+                            <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                              <a href="{% url 'crime_list' %}"><h4 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Click</h4></a>
+                                <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            </div>  
+                          <p class="mb-0 mt-2 text-success">{{ crime_count }} <span class="text-black ml-1"><small>Crimes</small></span></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <p class="card-title text-md-center text-xl-left">Criminals</p>
+                            <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                              <a href="{% url 'criminal_list' %}"><h4 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Click</h4></a>
+                                <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            </div>  
+                          <p class="mb-0 mt-2 text-success">{{ criminal_count }} <span class="text-black ml-1"><small>Criminals</small></span></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <p class="card-title text-md-center text-xl-left">Police</p>
+                            <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                              <a href="{% url 'existing_police' %}"><h4 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Click</h4></a>
+                                <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            </div>  
+                          <p class="mb-0 mt-2 text-success">{{ police_count }} <span class="text-black ml-1"><small>Police</small></span></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <p class="card-title text-md-center text-xl-left">Wanted List</p>
+                            <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                              <a href="{% url 'wanted_list' %}"><h4 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Click</h4></a>
+                                <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                            </div>  
+                          <p class="mb-0 mt-2 text-success">{{ wanted_list_count }}<span class="text-black ml-1"><small>Wanted Criminals</small></span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

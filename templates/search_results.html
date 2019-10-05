@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Home</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <p class="card-title"> Crime and Criminal Database</p>
+                  <p card_text_styled> Hello, {{ request.user.username }} </P>
+                  <div class="row">
+                    <div class="col-md-12 col-xl-12 d-flex flex-column justify-content-center">
+                      <form method = "get" action="{% url 'search_results' %}">
+                        <div class="form-group">
+                          <div class="input-group col-md-12 col-xl-8">
+                            <input type="text" name='q' class="form-control" placeholder="Search Criminal " >
+                              <div class="input-group-append">
+                                <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                              </div>
+                          </div>
+                        </div>
+                      </form>
+                        {% if searched_criminals %}
+
+                        <div>
+                            <h3>Search Results</h3>
+                                  <div class='col-12 py-0'>
+                                      <h5 class='card_text_styled'>results for "{{ query }}"</h5>
+                                  </div>
+                              
+
+                                <ul class="col-md-12 col-xl-8">
+                                {% for criminal in searched_criminals %}
+                                    {% if criminal is not None %}
+                                    <a href="{% url 'criminal_profile1' criminal.pk %} ">
+                                    <li class='card' style="padding:20px;">
+                                        Name: {{ criminal.first_name }} {{ criminal.last_name }}<br>
+                                        Date Of Birth: {{ criminal.date_of_birth }}<br>
+                                        Nationality: {{ criminal.nationality }}<br>    
+                                    </li>
+                                    </a>
+                                    {% endif %}
+                                {% endfor %}
+                                {% for crime in searched_criminals %}
+                                {% if crime %}
+                                <a href="{% url 'crime_detail' crime.pk %}">
+                                  <li class="card" style="padding:20px;">
+                                      Case No: {{ crime.pk }},<br> 
+                                      A crime of: {{ crime.type }} <br>
+                                      Status of Crime: {{ crime.crime_status }} <br>
+                                      Date of Crime: {{ crime.date_of_crime }}  <br> 
+                                  </li>
+                                  </a>
+                                  {% endif %}
+                                {% endfor %}
+                                </ul>
+                        </div>
+                        {% else %}
+                          <div>
+                            <h3>No Result</h3>
+                            <p class="card_text_styled">there was No results matching your search: "{{ query }}" </p>
+                          </div>
+                        {% endif %}
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

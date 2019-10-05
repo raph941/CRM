@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Crime Records</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body col-12">
+                  <p class="card-title">Crime Record Management</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="card-title">Case No: {{ crime.pk }}</p>
+                    
+                    <table class=table>
+                            <tr>
+                              <td class='label'>Type Of Crime:</td><td>{{ crime.type }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Crime Status:</td><td>{{ crime.crime_status }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Police On Case:</td><td>{{ crime.police }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Date Of Crime:</td><td>{{ crime.date_of_crime }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Time Of Crime:</td><td>{{ crime.time_of_crime }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Location:</td><td>{{ crime.crime_location }}</td>
+                            </tr>                            
+                            <tr>
+                              <td class='label'>Court:</td><td>{{ crime.court }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Court Verdict:</td><td>{{ crime.verdict}}</td>
+                            </tr>
+                         </table>  
+
+                        <div class=text_box>
+                            <p class="card-title">Statement</p>
+                            {{ crime.statement}}
+                        </div>
+
+                        <div>
+                        <p class="card-title">Criminals</p>
+                        {% if crime.criminal_set.count %}
+                            <table class="table col-12">
+                              {% for criminal in crime.criminal_set.all %}
+                                <tr>
+                                  <td class="label">Name:</td><td>
+                                    <a href="{% url 'criminal_profile1' criminal.pk %} ">
+                                        {{ criminal.first_name }} {{ criminal.last_name }}
+                                    </a>
+                                  </td>
+                                  <td class="label">Wanted Status:</td><td>{{ criminal.wanted_status }}</td>
+                                  <td class="label">Gender:</td><td>{{ criminal.sex }}</td>
+                                  
+                                </tr>
+                              {% endfor %}
+                            </table>
+                          
+                        {% endif %} 
+
+                        </div>
+
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}Crime Records{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/base/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+</head>
+<body>
+  {% block body %}
+  
+  
+  <div class="container-scroller">
+    <!-- navbar -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="{% url 'home' %}"><img src="{% static 'images/logo1.png' %}" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}"><img src="{% static 'images/logo1.png' %}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{% static 'images/faces/face.jpg' %}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="{% url 'my_profile' user.pk %}">
+                <i class="ti-settings text-primary"></i>
+                Account
+              </a>
+              <a class="dropdown-item" href="{% url 'logout' %}">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <span class="navbar-nav navbar-nav-right" style="padding-top: 30px;">{{ user.username }}</span>
+          </ul>
+        {% endif %}
+
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+          
+        </button>
+      </div>
+    </nav>
+    <!-- end navbar -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- sidebar -->
+    
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="ti-palette menu-icon"></i>
+              <span class="menu-title">Biometric Database</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+               {% if user.is_superuser or user.is_admin_police %} {% comment %}New biometrics is available to admin alone{% endcomment %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'new_biometrics' %}">New Biometric</a></li>
+              {% endif %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'search_biometrics' %}">Search Biometric</a></li>
+              </ul>
+            </div>
+          </li>
+          
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#me" aria-expanded="false" aria-controls="auth">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Crime Records</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="me">
+              <ul class="nav flex-column sub-menu">
+              {% if user.is_superuser or user.is_admin_police %} {% comment %}New Record is available to admin alone{% endcomment %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'new_crime' %}"> Add Crime </a></li>
+              {% endif %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'crime_list' %}"> View Crimes </a></li>
+              </ul>
+            </div>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ralph" aria-expanded="false" aria-controls="ralph">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Criminals</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ralph">
+              <ul class="nav flex-column sub-menu">
+              {% if user.is_superuser or user.is_admin_police %} {% comment %}New Record is available to admin alone{% endcomment %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'add_criminals' %}"> Add Criminal </a></li>
+              {% endif %}
+                <li class="nav-item"> <a class="nav-link" href="{% url 'criminal_list' %}"> View Criminals </a></li>
+              </ul>
+            </div>
+          </li>
+
+
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'wanted_list' %}">
+              <i class="ti-write menu-icon"></i>
+              <span class="menu-title">Wanted List</span>
+            </a>
+          </li>
+
+
+      <!-- sidebar tabs specific to the admin. some sub tabs here are user specific tho -->
+        {% if user.is_superuser or user.is_admin_police %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+              <i class="ti-pie-chart menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+ 
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Manage Accounts</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'new_police' %}"> New Police </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'existing_police' %}"> Existing Police </a></li>
+              </ul>
+            </div>
+          </li>
+         {% endif %} 
+          
+        </ul>
+      </nav>
+      <!-- end sidebar -->
+
+      <!-- main content -->
+      {% block content %}
+      {% endblock content %}
+      <!-- end of main content -->
+      
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+
+
+{% endblock body %}
+  <script src="{% static 'vendors/base/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  {%block javascript%}{% endblock %}
+</body>
+
+</html>
+

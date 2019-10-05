@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+.label{
+  font-weight:bold;
+  }
+
+
+</style>
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Police Profile</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  {% if profile.policeprofile.profile_pic %}
+                    <span>
+                      <img class="img-circle" src='{{ profile.policeprofile.profile_pic.url }}' alt='{{ criminal.criminalimage.image1.url }}'>                          
+                    </span>
+                    
+                  {% endif %}
+                  <p class="card-title">{{ profile.first_name }} {{ profile.last_name }}</p>
+
+                         
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div>
+                         <table class=table>
+                            <tr>
+                              <td class='label'>First Name:</td><td>{{ profile.first_name }}</td>
+                              <td class='label'>Last Name:</td><td>{{ profile.last_name }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Email:</td><td>{{ profile.email }}</td>
+                              <td class='label'>Phone Number:</td><td>{{ profile.policeprofile.phone_number }}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>Username:</td><td>{{ profile.username }}</td>
+                              <td class='label'>Last Login:</td><td>{{ profile.last_login }}</td>
+                            </tr>                            
+                            <tr>
+                              <td class='label'>Police Id:</td><td>{{ profile.policeprofile.police_id }}</td>
+                              <td class='label'>Nationality:</td><td>{{ profile.policeprofile.nationality}}</td>
+                            </tr>
+                            <tr>
+                              <td class='label'>State:</td><td>{{ profile.policeprofile.state }}</td>
+                              <td class='label'>City:</td><td>{{ profile.policeprofile.city }}</td>
+                            </tr>
+
+
+                         </table>   
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

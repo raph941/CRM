@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Police Profile</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <p class="card-title">{{ profile.first_name }} {{ profile.last_name }}</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ uu_form|crispy }}
+                            {{ upu_form|crispy }}
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+

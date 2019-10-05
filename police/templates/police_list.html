@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Police Officers</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <p class="card-title">Registered Users</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <table class="table table-hover">
+                        <thead class="thead-inverse">
+                          <tr>
+                            <th>S/N</th>
+                            <th>Name</th>
+                            <th>Last Login</th>
+                            <th>Date Added</th>
+                            <th>Police ID</th>
+                            <th>Phone Number</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users  %}
+                            <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td><a href="{% url 'police_profile_view' user.pk %} ">{{ user.username }}</a></td> 
+                              <td>{{ user.last_login }}</td>
+                              <td>{{ user.date_joined }}</td>
+                              <td>{{ user.policeprofile.police_id }}</td>
+                              <td>{{ user.policeprofile.phone_number }}</td>
+                            </tr>
+                        </tbody>
+                            {% endfor %}
+                      </table>
+                            
+                       
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+{% endblock %}
+
+
