@@ -99,23 +99,11 @@ def NewCrimeView(request):
     form = NewCrimeForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
+            form =  NewCrimeForm(request.POST)
             form.save()
-            type = form.cleaned_data.get('type')
-            crime_status = form.cleaned_data.get('crime_status')
-            court = form.cleaned_data.get('court')
-            verdict = form.cleaned_data.get('verdict')
-            crime_location = form.cleaned_data.get('crime_location')
-            date_of_crime = form.cleaned_data.get('date_of_crime')
-            time_of_crime = form.cleaned_data.get('time_of_crime')
-            statement = form.cleaned_data.get('statement')
-            police = form.cleaned_data.get('police')
-            Crime.objects.create(type=type, crime_status=crime_status, court=court, verdict=verdict,
-                crime_location=crime_location, date_of_crime=date_of_crime, time_of_crime=time_of_crime,
-                statement=statement, police=police)
-            return redirect('crimie_list')
+            return redirect('crime_list')
         else:
-            form = NewCrimeForm
-
+            form = NewCrimeForm(request.POST)
     return render(request, 'new_crime.html', {'form': form})
 
 

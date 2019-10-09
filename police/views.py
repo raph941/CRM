@@ -60,9 +60,6 @@ class SearchResultView(ListView):
         return Criminal.objects.none()       
 
         
-    
-    
-
 @login_required
 def Dashboard(request):
     criminal_count = Criminal.objects.count
@@ -161,25 +158,24 @@ def ProfileView(request, pk):
 @login_required
 def MyProfile(request, pk):
     instance = get_object_or_404(User, id=pk)   
-    uu_form = UserUpdateForm(request.POST, instance=instance)
+    uu_form = UserUpdateForm(request.POST, instance=request.user)
     upu_form = UserProfileUpdateForm(request.POST, request.FILES)
 
     if request.method == 'POST':
-        uu_form = UserUpdateForm(request.POST, instance=instance)
+        uu_form = UserUpdateForm(request.POST, instance=request.user)
         upu_form = UserProfileUpdateForm(request.POST, request.FILES)
         if uu_form.is_valid and upu_form.is_valid():
             uu_form.save()
             upu_form.save()
             return redirect('my_profile')
     else:
-        uu_form = UserUpdateForm(request.POST)
+        uu_form = UserUpdateForm(request.POST, instance=instance)
         upu_form = UserProfileUpdateForm(request.POST)
 
     context = {
         'uu_form': uu_form,
         'upu_form': upu_form,
     }
-
     return render(request, "my_profile.html", context)
 
 
