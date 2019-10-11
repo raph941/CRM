@@ -32,7 +32,7 @@ class Crime(models.Model):
     added_by = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.type
+        return f'case no:{ self.pk }, { self.type } '
 
 
 class Criminal(models.Model):
@@ -73,22 +73,16 @@ class Criminal(models.Model):
     residence = models.CharField(max_length=255, blank=True, null=True)
     date_of_arrest = models.DateField(
         auto_now=False, auto_now_add=False, blank=True, null=True)
+    image1 = models.ImageField(
+        upload_to='criminal_pics/', default='default1.jpg')
+    image2 = models.ImageField(
+        upload_to='criminal_pics/', default='default2.jpg')
+    
     crime = models.ManyToManyField('Crime')
 
     def __str__(self):
         return self.first_name
 
-
-class CriminalImage(models.Model):
-    criminal = models.OneToOneField(
-        Criminal, on_delete=models.CASCADE, blank=True, null=True)
-    image1 = models.ImageField(
-        upload_to='criminal_pics/', default='default1.jpg')
-    image2 = models.ImageField(
-        upload_to='criminal_pics/', default='default2.jpg')
-
-    def __str__(self):
-        return self.criminal.first_name
 
 
 class FingerPrint(models.Model):

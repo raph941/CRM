@@ -27,22 +27,27 @@
                         <thead class="thead-inverse">
                           <tr>
                             <th>S/N</th>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Last Login</th>
-                            <th>Date Added</th>
                             <th>Police ID</th>
-                            <th>Phone Number</th>
                           </tr>
                         </thead>
                         <tbody>
                             {% for user in users  %}
                             <tr>
                               <td>{{ forloop.counter }}</td>
+                              
+                                {% if user.policeprofile.profile_pic %}
+                                  <td><img src="{{ user.policeprofile.profile_pic.url }}"/></td>
+                                {% else %}
+                                <td></td>
+                                {% endif %}
+
+                              
                               <td><a href="{% url 'police_profile_view' user.pk %} ">{{ user.username }}</a></td> 
                               <td>{{ user.last_login }}</td>
-                              <td>{{ user.date_joined }}</td>
                               <td>{{ user.policeprofile.police_id }}</td>
-                              <td>{{ user.policeprofile.phone_number }}</td>
                             </tr>
                         </tbody>
                             {% endfor %}

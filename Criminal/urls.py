@@ -14,7 +14,6 @@ urlpatterns = [
 
     url(r"^AddCriminals/$", views.AddCriminals, name="add_criminals"),
     url(r"^CriminalProfile/(?P<pk>\d+)/$", views.CriminalProfile1, name="criminal_profile1"),
-    url(r"^CriminalProfile/UploadCriminalPic/(?P<pk>\d+)/$", views.UploadCriminalPic, name="upload_criminal_pic"),
     url(r"^success/$", views.success, name="success"),
     url(r"^ViewCriminal/$", views.CriminalListView.as_view(), name="criminal_list"),        
     url(r"^WantedList/$", views.WantedListView.as_view(), name="wanted_list"),

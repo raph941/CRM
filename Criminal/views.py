@@ -12,10 +12,8 @@ from django.urls import reverse
 
 from Criminal.forms import NewCriminalForm
 from Criminal.forms import NewCrimeForm
-from Criminal.forms import CriminalImageForm
 from .models import Criminal
 from .models import Crime
-from .models import CriminalImage
 from police.models import PoliceProfile, User
 
 
@@ -36,7 +34,7 @@ def Criminals(request):
 
 @login_required
 def AddCriminals(request):
-    form = NewCriminalForm(request.POST)
+    form = NewCriminalForm(request.POST, request.FILES)
 
     if request.method == 'POST':
         if form.is_valid():
@@ -55,25 +53,6 @@ def CriminalProfile1(request, pk):
     criminal = Criminal.objects.get(pk=pk)
 
     return render(request, 'criminalprofile1.html', {'criminal': criminal})
-
-
-def UploadCriminalPic(request, pk):
-    form = CriminalImageForm(request.POST, request.FILES)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-
-            image1 = form.cleaned_data.get('image1')
-            image2 = form.cleaned_data.get('image2')
-
-            CriminalImage.objects.create(
-                image1=image1, image2=image2, criminal_id=pk)
-
-            return redirect('criminal_profile1', pk)
-        else:
-            form = UploadCriminalPic()
-
-    return render(request, 'add_criminal_pic.html', {'form': form})
 
 
 def success(request):
@@ -105,7 +84,6 @@ def NewCrimeView(request):
         else:
             form = NewCrimeForm(request.POST)
     return render(request, 'new_crime.html', {'form': form})
-
 
 class CrimeListView(ListView):
     model = Crime

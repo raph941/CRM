@@ -7,7 +7,7 @@ from django.db import transaction
 
 from police.models import User
 
-from .models import Criminal, CriminalImage, Crime
+from .models import Criminal, Crime
 
 
 class NewCriminalForm(forms.ModelForm):
@@ -16,17 +16,11 @@ class NewCriminalForm(forms.ModelForm):
         fields = ('first_name', 'middle_name', 'last_name', 'aliases', 'wanted_status', 'email',
                   'date_of_birth', 'sex', 'hair_color', 'height', 'weight', 'foot_size', 'occupation',
                   'phone_number', 'nationality', 'state_of_origin', 'residence', 'description',
-                  'place_of_arrest', 'date_of_arrest', 'crime')
+                  'place_of_arrest', 'date_of_arrest', 'image1', 'image2', 'crime')
         widgets = {
             'date_of_birth': forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
             'date_of_arrest': forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
         }
-
-
-class CriminalImageForm(forms.ModelForm):
-    class Meta:
-        model = CriminalImage
-        fields = ['image1', 'image2']
 
 
 class NewCrimeForm(forms.ModelForm):
