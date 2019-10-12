@@ -26,7 +26,8 @@ class NewCriminalForm(forms.ModelForm):
 class NewCrimeForm(forms.ModelForm):
     class Meta:
         model = Crime
-        fields = ['type', 'crime_status', 'court', 'verdict', 'crime_location', 'date_of_crime',
+        fields = ['type', 'crime_status', 'court', 'verdict', 'country_of_crime', 'state_of_crime',
+                  'city_of_crime', 'date_of_crime', 
                   'time_of_crime', 'statement', 'police']
         widgets = {
             'date_of_crime': forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),        

@@ -4,24 +4,18 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from police.models import User
+from .Choices import *
 
 
 class Crime(models.Model):
-    OPEN = 'OPEN'
-    CLOSE = 'CLOSE'
-    PENDING = 'PENDING'
-    CRIME_STATUS = [
-        (OPEN, 'OPEN'),
-        (CLOSE, 'CLOSE'),
-        (PENDING, 'PENDING'),
-    ]
-
     type = models.CharField(max_length=50)
     crime_status = models.CharField(
         max_length=50, choices=CRIME_STATUS, default=OPEN)
     court = models.CharField(max_length=255, blank=True, null=True)
     verdict = models.CharField(max_length=100, blank=True, null=True)
-    crime_location = models.CharField(max_length=50, blank=True, null=True)
+    country_of_crime = models.CharField(max_length=50, blank=True, null=True)
+    state_of_crime = models.CharField(max_length=50, choices=STATE, blank=True, null=True)
+    city_of_crime = models.CharField(max_length=50, blank=True, null=True)
     date_of_crime = models.DateField(
         auto_now=False, auto_now_add=False, blank=True, null=True)
     time_of_crime = models.TimeField(
@@ -32,25 +26,10 @@ class Crime(models.Model):
     added_by = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f'case no:{ self.pk }, { self.type } '
+        return f'case no:{ self.pk }, { self.type }'
 
 
 class Criminal(models.Model):
-    # to create a field with a choice between male and female
-    MALE = 'Male'
-    FEMALE = 'Female'
-    GENDER = [
-        (MALE, 'male'),
-        (FEMALE, 'female'),
-    ]
-
-    WANTED = 'WANTED'
-    NOT_WANTED = 'NOT_WANTED'
-    STATUS = [
-        (WANTED, 'wanted'),
-        (NOT_WANTED, 'not_wanted'),
-    ]
-
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -58,7 +37,6 @@ class Criminal(models.Model):
     email = models.EmailField(max_length=254, null=True, blank=True)
     phone_number = models.CharField(max_length=50, blank=False, null=False)
     nationality = models.CharField(max_length=50, null=True, blank=True)
-    state_of_origin = models.CharField(max_length=50, null=True, blank=True)
     date_of_birth = models.DateField(auto_now=False, auto_now_add=False)
     hair_color = models.CharField(max_length=50)
     height = models.IntegerField()
@@ -68,6 +46,7 @@ class Criminal(models.Model):
     wanted_status = models.CharField(
         max_length=50, choices=STATUS, default=NOT_WANTED)
     description = models.CharField(max_length=50, blank=True, null=True)
+    state_of_origin = models.CharField(max_length=50, choices=STATE, null=True, blank=True)
     foot_size = models.CharField(max_length=50, blank=True, null=True)
     place_of_arrest = models.CharField(max_length=255, blank=True, null=True)
     residence = models.CharField(max_length=255, blank=True, null=True)

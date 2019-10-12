@@ -41,7 +41,7 @@
                             <td><a href="{% url 'crime_detail' crime.pk %}">{{ crime.type }}</a></td>
                             <td>{{ crime.crime_status }}</td>
                             <td>{{ crime.police }}</td>
-                            <td>{{ crime.crime_location }}</td>
+                            <td>{{ crime.city_of_crime }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
