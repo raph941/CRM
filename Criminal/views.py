@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 from django.views.generic import ListView, DetailView, CreateView
 from django import forms
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 from Criminal.forms import NewCriminalForm
 from Criminal.forms import NewCrimeForm
@@ -63,6 +64,7 @@ class CriminalListView(ListView):
     template_name = 'criminal_list.html'
     queryset = Criminal.objects.all()
     context_object_name = 'criminals'
+    paginate_by = 10
 
 
 class WantedListView(ListView):
@@ -70,6 +72,7 @@ class WantedListView(ListView):
     template_name = 'wanted_list.html'
     queryset = Criminal.objects.all().filter(wanted_status='WANTED')
     context_object_name = 'criminals'
+    paginate_by = 10
 
 
 
@@ -88,8 +91,11 @@ def NewCrimeView(request):
 class CrimeListView(ListView):
     model = Crime
     template_name = 'crime_list.html'
-    queryset = Crime.objects.all()
     context_object_name = 'crimes'
+    paginate_by = 10
+    queryset = Crime.objects.all()
+    # import pdb; pdb.set_trace()
+    # me=345
 
 
 class CrimeDetailView(DetailView):

@@ -1,3 +1,4 @@
+import json
 from django import forms
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -11,8 +12,9 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from Criminal.models import Criminal
 from Criminal.models import Crime
-from django.db.models import Q
+from django.db.models import Q, Count
 from itertools import chain
+from django.core.paginator import Paginator
 
 from police.forms import AdminPoliceCreationForm, PoliceCreationForm, UserUpdateForm, UserProfileUpdateForm
 
@@ -27,6 +29,7 @@ def home(request):
 class SearchResultView(ListView):
     template_name = 'search_results.html'
     context_object_name = 'searched_criminals'
+    paginate_by = 3
     
     
 
@@ -66,12 +69,24 @@ def Dashboard(request):
     crime_count = Crime.objects.count
     police_count = User.objects.count
     wanted_list_count = Criminal.objects.filter(wanted_status='WANTED').count
+    
+    dataset = Crime.objects.values('state_of_crime').annotate(number_of_crimes = Count('state_of_crime'))
+    
+    categories = list()
+    number_of_crimes = list()
+
+    for entry in dataset:
+        categories.append(entry['state_of_crime'])
+        number_of_crimes.append(entry['number_of_crimes'])
+
 
     context = {
         'criminal_count': criminal_count,
         'crime_count': crime_count,
         'police_count': police_count,
         'wanted_list_count': wanted_list_count,
+        'categories': json.dumps(categories),
+        'number_of_crimes': json.dumps(number_of_crimes)
     }
 
     return render(request, 'dashboard.html', context)
@@ -140,12 +155,14 @@ class AdminListView(ListView):
     template_name = 'admin_list.html'
     queryset = User.objects.all().filter(is_admin_police=True)
     context_object_name = 'administrative_users'
+    paginate_by = 10
 
 
 class PoliceListView(ListView):
     template_name = 'police_list.html'
     queryset = User.objects.all().filter(is_police=True)
     context_object_name = 'users'
+    paginate_by = 10
 
 
 @login_required

@@ -23,7 +23,7 @@ class Crime(models.Model):
     statement = models.CharField(max_length=255, blank=True, null=True)
     police = models.ForeignKey(
         User, related_name='police', on_delete=models.CASCADE, blank=True, null=True)
-    added_by = models.CharField(max_length=100, blank=True, null=True)
+    date_added = models.DateTimeField()
 
     def __str__(self):
         return f'case no:{ self.pk }, { self.type }'

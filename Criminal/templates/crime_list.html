@@ -37,7 +37,7 @@
                         <tbody>
                             {% for crime in crimes  %}
                             <tr>
-                            <td>{{ forloop.counter }}</td>
+                            <td>{{ crime.pk }}</td>
                             <td><a href="{% url 'crime_detail' crime.pk %}">{{ crime.type }}</a></td>
                             <td>{{ crime.crime_status }}</td>
                             <td>{{ crime.police }}</td>
@@ -46,6 +46,11 @@
                             {% endfor %}
                         </tbody>
                       </table>
+                      {% include 'includes/pagination.html' %}
+
+
+
+
                     </div>
                     
                   </div>

@@ -36,7 +36,7 @@
                         <tbody>
                             {% for criminal in criminals  %}
                             <tr>
-                            <td>{{ forloop.counter }}</td>
+                            <td>{{ criminal.pk }}</td>
                             <td><img src="{{ criminal.image1.url }}"/></td>
                             <td><a href="{% url 'criminal_profile1' criminal.pk %} ">{{ criminal.first_name }} {{ criminal.last_name }}</a></td>
                             <td>{{ criminal.aliases }}</td>
@@ -44,8 +44,8 @@
                         </tbody>
                             {% endfor %}
                       </table>
-                            
-                       
+
+                      {% include 'includes/pagination.html' %}
 
                     </div>
                     
