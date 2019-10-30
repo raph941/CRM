@@ -173,30 +173,22 @@ def ProfileView(request, pk):
 
 # this view is surposed to update user profile but it not working yet so take note and fix it laters
 @login_required
-def MyProfile(request, pk):
-    instance = get_object_or_404(User, id=pk)   
-    uu_form = UserUpdateForm(request.POST, instance=request.user)
-    upu_form = UserProfileUpdateForm(request.POST, request.FILES)
-
+def MyProfile(request, pk):   
     if request.method == 'POST':
         uu_form = UserUpdateForm(request.POST, instance=request.user)
-        upu_form = UserProfileUpdateForm(request.POST, request.FILES)
+        upu_form = UserProfileUpdateForm(request.POST, request.FILES, instance=request.user.policeprofile)
         if uu_form.is_valid and upu_form.is_valid():
             uu_form.save()
             upu_form.save()
-            return redirect('my_profile')
+            return redirect('home')
     else:
-        uu_form = UserUpdateForm(request.POST, instance=instance)
-        upu_form = UserProfileUpdateForm(request.POST)
+        uu_form = UserUpdateForm(instance=request.user)
+        upu_form = UserProfileUpdateForm(instance=request.user.policeprofile)
 
     context = {
         'uu_form': uu_form,
         'upu_form': upu_form,
     }
     return render(request, "my_profile.html", context)
-
-
-
-
 
 

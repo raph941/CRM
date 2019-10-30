@@ -6,10 +6,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django import forms
 from django.urls import reverse
 from django.core.paginator import Paginator
+from django.urls import reverse_lazy
 
 from Criminal.forms import NewCriminalForm
 from Criminal.forms import NewCrimeForm
@@ -101,6 +102,13 @@ class CrimeListView(ListView):
 class CrimeDetailView(DetailView):
     model = Crime
     template_name = 'crime_detail.html'
+
+
+class CriminalDeleteView(DeleteView):
+    model = Criminal
+    success_url = reverse_lazy('criminal_list')
+    template_name = 'criminal_delete.html'
+
     
 
 @login_required
