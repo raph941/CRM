@@ -23,7 +23,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div>
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data" class='col-6'>
                             {% csrf_token %}
                             {{ uu_form|crispy }}
                             {{ upu_form|crispy }}

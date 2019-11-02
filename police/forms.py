@@ -28,6 +28,7 @@ class PoliceCreationForm(UserCreationForm):
         User.is_police = True
         fields = ('username', 'first_name', 'last_name', 'email', 'police_id', 'phone_number',
                   'nationality', 'state', 'city', 'profile_pic', 'password1', 'password2')
+        
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -64,3 +65,5 @@ class AdminPoliceCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+    

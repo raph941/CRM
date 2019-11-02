@@ -26,11 +26,46 @@
                 <a  href="{% url 'new_admin_police' %}"> here </a>
                 to Create an Administrative Police Officer</span>
                 
-                    <form method='POST' enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
+                  <form method='POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        {{ form.first_name|as_crispy_field }}
+                      </div>
+                      <div class="col-md-6">
+                        {{ form.last_name|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        {{ form.email|as_crispy_field }}
+                      </div>
+                      <div class="col-6">
+                        {{ form.phone_number|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4">
+                        {{ form.nationality|as_crispy_field }}
+                      </div>
+                      <div class="col-4">
+                        {{ form.state|as_crispy_field }}
+                      </div>
+                      <div class="col-4">
+                        {{ form.city|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        {{ form.username|as_crispy_field }}
+                      </div>
+                      <div class="col-6">
+                        {{ form.police_id|as_crispy_field }}
+                      </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
                   
 
 
