@@ -21371,3 +21371,7 @@ dl li {
   color: #787878;
 }
 
+.classified-stamp{
+  background: url("/static/images/stamp3.png");
+  background-size: cover;
+}

@@ -27,12 +27,15 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">
                 <div class="card-body">
-                  <div class="row">
+                  <div class="row classified-stamp">
                     <div class="col-12  justify-content-center">
                       <p class="card-title">Pictures</p>
                           <span>
                             <img class="img-circle" src='{{ criminal.image1.url }}' alt='{{ criminal.criminalimage.image1.url }}'>
                             <img class="img-rounded" src='{{ criminal.image2.url }}' alt='{{ criminal.criminalimage.image2.url }}'>
+                          </span>
+                          <span class='classified-stamp' style="position: absolute; top: 0px; right: 0px;">
+                            <img class="img-circle" src="{% static 'images/stamp3.png' %}" alt='classified'>
                           </span>
                     <p class="card-title">Bio Information</p>
                       <table class="table col-12">
