@@ -19,7 +19,7 @@ django 2.1
     venv\Scripts\activate.bat
 
 ### install requirement files: 
-    ***pip install -r requirements.txt***
+    pip install -r requirements.txt
 
 ### make migrations
     python manage.py makemigrations
