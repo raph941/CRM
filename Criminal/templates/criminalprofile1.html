@@ -8,7 +8,9 @@
 .label{
   font-weight:bold;
   }
-
+.criminal-image{
+  Height: 200px;
+}
 
 </style>
 <div class="main-panel">
@@ -31,8 +33,8 @@
                     <div class="col-12  justify-content-center">
                       <p class="card-title">Pictures</p>
                           <span>
-                            <img class="img-circle" src='{{ criminal.image1.url}}' alt='{{ criminal.criminalimage.image1.url }}'>
-                            <img class="img-rounded" src='{{ criminal.image2.url}}' alt='{{ criminal.criminalimage.image2.url }}'>
+                            <img class="img-circle criminal-image" src='{{ criminal.image1.url}}' alt='{{ criminal.criminalimage.image1.url }}'>
+                            <img class="img-rounded criminal-image" src='{{ criminal.image2.url}}' alt='{{ criminal.criminalimage.image2.url }}'>
                           </span>
                           <span class='classified-stamp' style="position: absolute; top: 0px; right: 0px;">
                             <img class="img-circle" src="{% static 'images/stamp3.png' %}" alt='classified'>
