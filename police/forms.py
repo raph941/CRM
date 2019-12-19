@@ -66,4 +66,8 @@ class AdminPoliceCreationForm(UserCreationForm):
             user.save()
         return user
 
-    
+
+class BackgroundCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')

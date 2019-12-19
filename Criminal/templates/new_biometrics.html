@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -21,10 +21,17 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">
                 <div class="card-body">
+                 {% include 'partials/messages.html' %}
                   <p class="card-title">Crime Record Management</p>
                   <div class="row bio-bg">
                     <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-center">
                       
+                      <form method='POST' enctype="multipart/form-data" class="col-12">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+
                     </div>
                     
                   </div>

@@ -16,12 +16,12 @@
             </div>
           </div>
                 
-          <div class="row">
+          <div class="row ">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">
                 <div class="card-body col-12">
                   <p class="card-title">Crime Record Management</p>
-                  <div class="row">
+                  <div class="row classified-stamp">
                     <div class="col-12">
                       <p class="card-title">Case No: {{ crime.pk }}</p>
                     
@@ -46,6 +46,7 @@
                             </tr>
                             <tr>
                               <td class='label'>State Of Crime:</td><td>{{ crime.state_of_crime }}</td>
+                              <td class='label'>LGA:</td><td>{{ crime.local_gov_area }}</td>
                             </tr>
                             <tr>
                               <td class='label'>City Of Crime:</td><td>{{ crime.city_of_crime }}</td>

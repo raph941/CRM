@@ -1,3 +1,4 @@
+# import requests
 import json
 from django import forms
 from django.contrib import messages
@@ -16,15 +17,21 @@ from django.db.models import Q, Count
 from itertools import chain
 from django.core.paginator import Paginator
 
-from police.forms import AdminPoliceCreationForm, PoliceCreationForm, UserUpdateForm, UserProfileUpdateForm
+from police.forms import AdminPoliceCreationForm, PoliceCreationForm, UserUpdateForm, UserProfileUpdateForm, BackgroundCreationForm
+from Criminal.forms import SelectStateForAnalysisForm
 
 from .models import PoliceProfile, User
+from .LGA_COUNT import *
 
 
 @login_required
 def home(request):
     return render(request, 'home.html')
 
+
+@login_required
+def About(request):
+    return render(request, 'about.html')
 
 class SearchResultView(ListView):
     template_name = 'search_results.html'
@@ -65,6 +72,7 @@ class SearchResultView(ListView):
         
 @login_required
 def Dashboard(request):
+    form = SelectStateForAnalysisForm(request.GET)
     criminal_count = Criminal.objects.count
     crime_count = Crime.objects.count
     police_count = User.objects.count
@@ -86,10 +94,36 @@ def Dashboard(request):
         'police_count': police_count,
         'wanted_list_count': wanted_list_count,
         'categories': json.dumps(categories),
-        'number_of_crimes': json.dumps(number_of_crimes)
+        'number_of_crimes': json.dumps(number_of_crimes),
+        'form': form,
     }
 
+    # response = requests.get('https://api.fbi.gov/wanted/v1/list')
+    # data = json.loads(response.content)
+    # print(data['total'])
+    # print(data['items'][0]['title'])
+
     return render(request, 'dashboard.html', context)
+
+
+@login_required
+def States(request):
+    dataset = Crime.objects.values('local_gov_area').annotate(number_of_crimes = Count('local_gov_area'))
+    
+    categories = list()
+    number_of_crimes = list()
+
+    for entry in dataset:
+        categories.append(entry['local_gov_area'])
+        number_of_crimes.append(entry['number_of_crimes'])
+
+
+    context = {
+        'categories': json.dumps(categories),
+        'number_of_crimes': json.dumps(number_of_crimes),
+    }
+   
+    return render(request, 'plateau.html', context, context2)
 
 
 @login_required
@@ -111,9 +145,10 @@ def NewPolice(request):
             PoliceProfile.objects.create(police_id=police_id, phone_number=phone_number,
                                          nationality=nationality,
                                          state=state, city=city, profile_pic=profile_pic, user=user)
-
+            messages.success(request, "successfully Created")
             return redirect('home')
         else:
+            messages.success(request, "user was not successfully Created")
             form = PoliceCreationForm()
 
     return render(request, 'new_police.html', {'form': form})
@@ -138,12 +173,33 @@ def NewAdminPolice(request):
             PoliceProfile.objects.create(police_id=police_id, phone_number=phone_number,
                                          nationality=nationality,
                                          state=state, city=city, profile_pic=profile_pic, user=user)
-
+            messages.success(request, "successfully Created")
             return redirect('home')
         else:
+            messages.success(request, "user was not successfully Created")
             form = AdminPoliceCreationForm()
 
     return render(request, 'new_admin_police.html', {'form': form})
+
+
+@login_required
+def NewBackgroundCheck(request):
+    form = BackgroundCreationForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.is_background_check = True
+            user.save()
+            
+            messages.success(request, "successfully Created")
+            return redirect('home')
+        else:
+            messages.success(request, "user was not successfully Created")
+            form = BackgroundCreationForm()
+
+    return render(request, 'new_background_check.html', {'form': form})
+
 
 
 @login_required
@@ -190,5 +246,6 @@ def MyProfile(request, pk):
         'upu_form': upu_form,
     }
     return render(request, "my_profile.html", context)
+
 
 

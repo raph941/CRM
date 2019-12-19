@@ -108,6 +108,44 @@ STATE = [
 ]
 
 
+#choices for the local government area of Plateau state
 
+Barkin_Ladi = 'Barkin Ladi L.G.A'
+Barkin_Ladi_Town_Area = 'Barkin Ladi Town Area'
+Bassa_West = 'Bassa West LGA'
+Bokkos = "Bokkos L.G.A"
+Jos = "Jos"
+Jos_East = "Jos East L.G.A"
+Jost_North = 'Jost North L.G.A'
+Jos_South = 'Jos South L.G.A'
+Kanam = 'Kanam L.G.A'
+Kanke = 'Kanke L.G.A'
+Langtang_South ='Langtang South L.G.A'
+Mangu_Zip = 'Mangu Zip L.G.A'
+Mikang = 'Mikang L.G.A'
+Pankshin = 'Pankshin L.G.A'
+Qua = 'Qua'
+Riyom = 'Riyom L.G.A'
+Shendam = 'Shendam L.G.A'
+Wase = 'Wase L.G.A'
 
-
+PLATEAU_LGA = [
+    (Barkin_Ladi, 'Barkin Ladi L.G.A'),
+    (Barkin_Ladi_Town_Area, 'Barkin Ladi Town Area'),
+    (Bassa_West, 'Bassa West LGA'),
+    (Bokkos, "Bokkos L.G.A"),
+    (Jos, "Jos"),
+    (Jos_East, "Jos East L.G.A"),
+    (Jost_North, 'Jost North L.G.A'),
+    (Jos_South, 'Jos South L.G.A'),
+    (Kanam, 'Kanam L.G.A'),
+    (Kanke, 'Kanke L.G.A'),
+    (Langtang_South, 'Langtang South L.G.A'),
+    (Mangu_Zip, 'Mangu Zip L.G.A'),
+    (Mikang, 'Mikang L.G.A'),
+    (Pankshin, 'Pankshin L.G.A'),
+    (Qua, 'Qua'),
+    (Riyom, 'Riyom L.G.A'),
+    (Shendam, 'Shendam L.G.A'),
+    (Wase, 'Wase L.G.A'),
+]

@@ -4,10 +4,12 @@
 
 {% block content %}
 
-
 <div class="main-panel">
+
         <div class="content-wrapper">
+        
           <div class="row">
+          
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -16,11 +18,12 @@
               </div>
             </div>
           </div>
-                
           <div class="row">
+          
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">
                 <div class="card-body">
+                {% include 'partials/messages.html' %}
                   <p class="card-title"> Crime and Criminal Database</p>
                   <p card_text_styled> Hello, {{ request.user.username }} </P>
                   <div class="row">

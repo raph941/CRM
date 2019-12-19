@@ -24,6 +24,7 @@ from accounts import views as accounts_views
 from django.conf import settings
 from django.conf.urls.static import static
 from police.views import SearchResultView
+from police.views import About
 
 
 urlpatterns = [
@@ -36,6 +37,10 @@ urlpatterns = [
     url(r'^login/$', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), {'next_page': 'login.html'}, name='logout'),
     url(r"^Dashboard/$", views.Dashboard, name="dashboard"),
+    url(r"^About/$", views.About, name="about"),
+    #start of temporary stuff
+    url(r"^Dashboard/Plateau$", views.States, name="states"),
+    #end of temporary stuff
     url(r'^admin/', admin.site.urls),
 
 ]

@@ -7,8 +7,8 @@ from django.db import transaction
 
 from police.models import User
 
-from .models import Criminal, Crime
-
+from .models import Criminal, Crime, FingerPrint
+from .Choices import *
 
 class NewCriminalForm(forms.ModelForm):
     class Meta:
@@ -26,11 +26,24 @@ class NewCriminalForm(forms.ModelForm):
 class NewCrimeForm(forms.ModelForm):
     class Meta:
         model = Crime
-        fields = ['type', 'crime_status', 'court', 'verdict', 'country_of_crime', 'state_of_crime',
-                  'city_of_crime', 'date_of_crime', 
-                  'time_of_crime', 'statement', 'police']
+        fields = ['type', 'crime_status', 'victim', 'police', 'country_of_crime', 'state_of_crime', 'local_gov_area',
+                  'city_of_crime', 'date_of_crime', 'time_of_crime', 'statement', 'verdict', 'court' ]
+                  
         widgets = {
             'date_of_crime': forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),        
             'time_of_crime': forms.TimeInput(format=('%H:%M'), attrs={'class': 'form-control', 'placeholder': 'Select time', 'type': 'time'}),        
 
             }
+
+
+class FingerprinttemplateForm(forms.ModelForm):
+    class Meta:
+        model = FingerPrint
+        fields = ['criminal', 'right_thumb', 'right_index', 'right_middle', 'right_ring', 'right_pinky',
+                    'left_thumb', 'left_index', 'left_middle', 'left_ring', 'left_pinky'] 
+
+
+class SelectStateForAnalysisForm(forms.Form):
+    select_state = forms.ChoiceField( choices=STATE, required=True, 
+        label="Select State for Crime Analysis ", 
+        initial=None, help_text="Criminal dtata available only for Plateau State at the moment")

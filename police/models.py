@@ -8,6 +8,7 @@ from datetime import datetime
 class User(AbstractUser):
     is_police = models.NullBooleanField(default=False, db_index=True)
     is_admin_police = models.NullBooleanField(default=False, db_index=True)
+    is_background_check = models.NullBooleanField(default=False, db_index=True)
 
     
 class PoliceProfile(models.Model):

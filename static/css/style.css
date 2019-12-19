@@ -9182,7 +9182,7 @@ pre code {
 }
 
 .row {
-  display: flex;
+  display: flex; 
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
@@ -21370,8 +21370,29 @@ dl li {
   font-weight: 500;
   color: #787878;
 }
+.asteriskField {
+  display: none;
+}
 
 .classified-stamp{
   background: url("/static/images/stamp3.png");
   background-size: cover;
+}
+.nigerian-arm{
+  background: url("/static/images/coat-of-arms-of-nigeria.jpg");
+  background-size: cover;
+}
+
+.login-bg{
+  background: url("/static/images/stars.jpg");
+  background-size: cover;
+}
+.login-text{
+  text-align: center;
+  font-family: monospace;
+  font-weight: 500;
+  color: white;
+}
+.messages{
+  position: relative
 }

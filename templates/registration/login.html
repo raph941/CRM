@@ -4,33 +4,52 @@
 
 
 {% block body %}
+  <div class="container-scroller ">
+    <div class="container-fluid page-body-wrapper full-page-wrapper ">
+      <div class="content-wrapper d-flex align-items-center auth px-0 " style="background:#0d0a17">
+        <div class="row w-100 mx-0 ">
+          <div class="col-lg-6 mx-auto">
+            <div class="text-center py-5 px-4 px-sm-5" >
+              
+              
+                <div class="row " style='justify-content: center;'>
+                  <div>
+                    <img src="{% static 'images/images.png' %}" alt="profile"/>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-8 col-12">
 
-  <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
-        <div class="row flex-grow">
-          <div class="col-lg-6 d-flex align-items-center justify-content-center">
-            <div class="auth-form-transparent text-left p-3">
-              <div class="brand-logo">
-                <img src="{% static 'images/logo2.png' %}" alt='logo'>
+                  <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control-sm" name="username" placeholder="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control-sm" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </form>
+
+                      
+                  </div>
+                </div>
               </div>
-              <h4>Hello!</h4>
-              <h6 class="font-weight-light">Welcome to the Base! verify your identity to proceed</h6>
-              <form method="post" novalidate>
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-primary">Log in</button>
-              </form>
             </div>
-          </div>
-          <div class="col-lg-6 login-half-bg d-flex flex-row">
-            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2019 Ehindero Raphael Ayo</p>
-          </div>
+            <div class="login-text col-12">
+              <p class="login-text">
+                This is a Federal computer system and is a property of the Nigerian government. It is for authorized use only
+                use of this system constitutes consent to security monitoring and logging. 
+              </P>
+              <p class="login-text">  
+                All activities is logged with yor host name and Ip address
+                users both authorized and unauthorized has no explicit or implicit expectation of privacy
+              </p>
+            </div>
         </div>
+        
       </div>
-      <!-- content-wrapper ends -->
+      
     </div>
-    <!-- page-body-wrapper ends -->
+    
   </div>
-
+  
   {% endblock body %}

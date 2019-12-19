@@ -12,6 +12,7 @@ urlpatterns = [
     url(r"^NewPolice/$", views.NewPolice, name="new_police"),
     url(r"^MyProfile/(?P<pk>\d+)/$", views.MyProfile, name="my_profile"),
     url(r"^NewAdminPolice/$", views.NewAdminPolice, name="new_admin_police"),
+    url(r"^NewBackgroundCheckOrganization/$", views.NewBackgroundCheck, name="new_background_check"),
     url(r"^ExistingPolice/$", views.ExistingPolice, name="existing_police"),
     url(r"^ExistingPolice/AdminList/$", views.AdminListView.as_view(), name="admin_list"),
     url(r"^ExistingPolice/PoliceList/$", views.PoliceListView.as_view(), name="police_list"),

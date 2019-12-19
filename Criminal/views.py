@@ -11,10 +11,13 @@ from django import forms
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
+import mimetypes
+import os
+from django.conf import settings
 
 from Criminal.forms import NewCriminalForm
-from Criminal.forms import NewCrimeForm
-from .models import Criminal
+from Criminal.forms import NewCrimeForm, FingerprinttemplateForm
+from .models import Criminal, FingerPrint
 from .models import Crime
 from police.models import PoliceProfile, User
 
@@ -53,8 +56,23 @@ def AddCriminals(request):
 
 def CriminalProfile1(request, pk):
     criminal = Criminal.objects.get(pk=pk)
+    # fingerprinttemplates = FingerPrint.objects.get(criminal_id=pk)
 
-    return render(request, 'criminalprofile1.html', {'criminal': criminal})
+    # fl_path = os.path.join(settings.MEDIA_ROOT, fingerprinttemplates)
+    # filename = 'right_thumb.ftp'
+
+    # fl = open(fl_path, 'r')
+    # mime_type, _ = mimetypes.guess_type(fl_path)
+    # response = HttpResponse(fl, content_type=mime_type)
+    # response['Content-Disposition'] = "attachment; filename=%s" % filename
+    # return response
+
+    context = {
+        'criminal': criminal,
+        # 'fingerprinttemplates': fingerprinttemplates,
+    }
+    
+    return render(request, 'criminalprofile1.html', context)
 
 
 def success(request):
@@ -118,4 +136,15 @@ def SearchBiometrics(request):
 
 @login_required
 def NewBiometrics(request):
-    return render(request, 'new_biometrics.html')
+    form = FingerprinttemplateForm(request.POST, request.FILES)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form_data = form.save()
+            form_data.save()
+            messages.success(request, "Fingerprint Template was Successfully Uploaded!", extra_tags='alert')
+            return redirect('new_biometrics')
+        else:
+            form = FingerprinttemplateForm
+            messages.error(request, 'Fingerprint Upload Was Unsuccessful!')
+    return render(request, 'new_biometrics.html', {'form': form})

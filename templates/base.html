@@ -14,7 +14,9 @@
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
 </head>
 <body>
+  
   {% block body %}
+
   <div class="container-scroller">
     <!-- navbar -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -26,15 +28,15 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="ti-view-list"></span>
         </button>
-        
-        {% if user.is_authenticated %}
+        {% comment %} to restrict access to authenticated users {% endcomment %}
+        {% if user.is_authenticated %} 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               {% if user.policeprofile.profile_pic %}
                 <img src="{{ request.user.policeprofile.profile_pic.url }}" alt="profile"/>
               {% else %}
-                <img src="{% static 'images/faces/face.jpg' %}" alt="profile"/>
+                <img src="{% static 'images/faces/face.png' %}" alt="profile"/>
               {% endif %}
               
             </a>
@@ -58,10 +60,11 @@
         </button>
       </div>
     </nav>
+    
     <!-- end navbar -->
     <div class="container-fluid page-body-wrapper">
-      <!-- sidebar -->
     
+      <!-- sidebar -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
@@ -70,6 +73,7 @@
               <span class="menu-title">Home</span>
             </a>
           </li>
+          {% if user.is_superuser or user.is_admin_police or user.is_police %}
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="ti-palette menu-icon"></i>
@@ -155,12 +159,21 @@
             </div>
           </li>
          {% endif %} 
+         {% endif %} 
+
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">
+              <i class="ti-pie-chart menu-icon"></i>
+              <span class="menu-title">About</span>
+            </a>
+          </li>
           
         </ul>
       </nav>
       <!-- end sidebar -->
 
       <!-- main content -->
+      
       {% block content %}
       {% endblock content %}
       <!-- end of main content -->
@@ -170,9 +183,7 @@
   </div>
   <!-- container-scroller -->
 
-
-
-{% endblock body %}
+  {% endblock body %}
   <script src="{% static 'vendors/base/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
   <script src="{% static 'js/off-canvas.js' %}"></script>

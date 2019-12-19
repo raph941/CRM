@@ -31,8 +31,8 @@
                     <div class="col-12  justify-content-center">
                       <p class="card-title">Pictures</p>
                           <span>
-                            <img class="img-circle" src='{{ criminal.image1.url }}' alt='{{ criminal.criminalimage.image1.url }}'>
-                            <img class="img-rounded" src='{{ criminal.image2.url }}' alt='{{ criminal.criminalimage.image2.url }}'>
+                            <img class="img-circle" src='{{ criminal.image1.url}}' alt='{{ criminal.criminalimage.image1.url }}'>
+                            <img class="img-rounded" src='{{ criminal.image2.url}}' alt='{{ criminal.criminalimage.image2.url }}'>
                           </span>
                           <span class='classified-stamp' style="position: absolute; top: 0px; right: 0px;">
                             <img class="img-circle" src="{% static 'images/stamp3.png' %}" alt='classified'>
@@ -81,12 +81,24 @@
                 </div>
                 
                 <div>
-                  <p class="card-title">Biometrics</p>
-                    
-                        <a href="#">
-                      
-                        <button class='btn btn-primary btn-small'>Upload Biometrics</button>
-                        </a>
+                    <p class="card-title">Biometrics</p>  
+                    {% if fingerprinttemplates %}
+                    {% if user.is_superuser or user.is_admin_police %}
+                      Fingerprint Template files
+                      {% comment %} <table class="table col-12">
+                        <tr>
+                          <td class="label">Right Thumb:</td><td>{{ fingerprinttemplates.right_thumb }} </td>
+                        </tr> {% endcomment %}
+                      <a  href="{% url 'new_biometrics' %}">
+                          <button type="button" class="btn btn-primary">Download Template</button>
+                      </a>
+                    {% else %}
+                      <a  href="{% url 'new_biometrics' %}">
+                          <button type="button" class="btn btn-primary">Upload Template</button>
+                      </a>
+                        
+                    {% endif %}
+                    {% endif %}
                 </div>
 
 
