@@ -14,6 +14,7 @@ import os
 from decouple import config, Csv
 import dj_database_url
 from django.contrib.messages import constants as messages
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,6 +56,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -162,3 +164,6 @@ LOGIN_REDIRECT_URL = '/'
 #to redirect our logout to the login page
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
+
+#heroku settings
+django_heroku.settings(locals())

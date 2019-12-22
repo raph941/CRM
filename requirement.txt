@@ -22,3 +22,4 @@ virtualenv==16.4.3
 virtualenvwrapper-win==1.2.5
 whitenoise==5.0.1
 wrapt==1.11.1
+django_heroku
