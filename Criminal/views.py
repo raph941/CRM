@@ -56,20 +56,9 @@ def AddCriminals(request):
 
 def CriminalProfile1(request, pk):
     criminal = Criminal.objects.get(pk=pk)
-    # fingerprinttemplates = FingerPrint.objects.get(criminal_id=pk)
-
-    # fl_path = os.path.join(settings.MEDIA_ROOT, fingerprinttemplates)
-    # filename = 'right_thumb.ftp'
-
-    # fl = open(fl_path, 'r')
-    # mime_type, _ = mimetypes.guess_type(fl_path)
-    # response = HttpResponse(fl, content_type=mime_type)
-    # response['Content-Disposition'] = "attachment; filename=%s" % filename
-    # return response
 
     context = {
         'criminal': criminal,
-        # 'fingerprinttemplates': fingerprinttemplates,
     }
     
     return render(request, 'criminalprofile1.html', context)
@@ -113,8 +102,6 @@ class CrimeListView(ListView):
     context_object_name = 'crimes'
     paginate_by = 10
     queryset = Crime.objects.all()
-    # import pdb; pdb.set_trace()
-    # me=345
 
 
 class CrimeDetailView(DetailView):

@@ -29,7 +29,7 @@ class Crime(models.Model):
     date_added = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
-        return f'case no:{ self.pk }, { self.type }'
+        return f'case no: { self.pk }, { self.type }'
 
 
 class Criminal(models.Model):
