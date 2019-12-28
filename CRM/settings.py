@@ -29,7 +29,7 @@ SECRET_KEY = 'SECRET_KEY'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOST', cast=Csv())
+ALLOWED_HOSTS = config('127.0.0.1', 'criminalrecord.herokuapp.com')
 
 FILE_UPLOAD_HANDLERS= [    'django.core.files.uploadhandler.MemoryFileUploadHandler',
                             'django.core.files.uploadhandler.TemporaryFileUploadHandler', ]
