@@ -118,7 +118,7 @@ def States(request):
         'number_of_crimes': json.dumps(number_of_crimes),
     }
    
-    return render(request, 'plateau.html', context, context2)
+    return render(request, 'plateau.html', context)
 
 
 @login_required
