@@ -92,13 +92,37 @@ WSGI_APPLICATION = 'CRM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+# DATABASES = {
+#             'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'postgres',
+#             'USER': 'postgres',
+#             'PASSWORD': 'postgres',
+#             # 'HOST': 'localhost',
+#             'HOST': 'localhost',
+#             'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+            'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'db7sl47l2mk1le',
+            'USER': 'lsfsdekyswrwhn',
+            'PASSWORD': 'c8267e18415da0e2646bf934dd7989b9e0f7b63cbfc0d40a6448da1ca490a590',
+            'HOST': 'ec2-54-235-86-101.compute-1.amazonaws.com',
+            'PORT': '5432',
+    }
 }
 
-#here because i extended the inbuilt user model (AbstractUser) to add some few new fields
+#this was added because i extended the inbuilt user model (AbstractUser) to add some few new fields
 AUTH_USER_MODEL = 'police.User'
 
 # Password validation

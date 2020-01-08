@@ -21,7 +21,7 @@ from police.forms import AdminPoliceCreationForm, PoliceCreationForm, UserUpdate
 from Criminal.forms import SelectStateForAnalysisForm
 
 from .models import PoliceProfile, User
-from .LGA_COUNT import *
+# from .LGA_COUNT import *
 
 
 @login_required
