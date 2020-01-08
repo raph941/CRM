@@ -127,7 +127,7 @@ def NewPolice(request):
     if request.method == 'POST':
         if form.is_valid():
             user = form.save()
-            user.refresh_from_db()
+
             user.is_police = True
             user.save()
             police_id = form.cleaned_data.get('police_id')
