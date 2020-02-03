@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'CRM.wsgi.application'
 #             'NAME': 'postgres',
 #             'USER': 'postgres',
 #             'PASSWORD': 'postgres',
-#             # 'HOST': 'localhost',
+#             'HOST': 'localhost',
 #             'HOST': 'localhost',
 #             'PORT': '5432',
 #     }
