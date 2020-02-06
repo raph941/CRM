@@ -35,7 +35,7 @@
                       </div> 
                     </form>
                     
-                      <table class="table table-hover nigerian-arm">
+                      <table class="table table-hover nigerian-arm col-12 table-responsive">
                         <thead class="thead-inverse">
                           <tr>
                             <th>Image</th>                          
@@ -52,7 +52,6 @@
                             <td><a href="{% url 'criminal_profile1' criminal.pk %} ">{{ criminal.first_name }} {{ criminal.last_name }}</a></td>
                             <td>{{ criminal.aliases }}</td>
                             <td>{{ criminal.sex }}</td>
-                            <td class="ti-pencil-alt2" style="color:red;"></td>
                             <td ><a href="{% url 'criminal_delete' criminal.pk %} ">
                               <span class="ti-trash" style="color:blue;"></span>
                             </a></td>

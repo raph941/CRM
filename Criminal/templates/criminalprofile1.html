@@ -40,7 +40,8 @@
                             <img class="img-circle" src="{% static 'images/stamp3.png' %}" alt='classified'>
                           </span>
                     <p class="card-title">Bio Information</p>
-                      <table class="table col-12">
+
+                      <table class="table col-12 table-responsive">
                             <tr>
                               <td class="label">Name:</td><td>{{ criminal.first_name }} {{ criminal.middle_name }} {{ criminal.last_name }} </td>
                               <td class="label">Phone:</td><td>{{ criminal.phone_number }}</td>
@@ -61,12 +62,12 @@
                               <td class="label">Weigth:</td><td>{{ criminal.weight }}</td>
                               <td class="label">Known Residence:</td><td>{{ criminal.residence }}</td>
                             </tr>
-                    </table>
+                      </table>
                   
                 <div class = "profile_section" >
                   <p class="card-title">Crimes Commited</p>
                          {% if criminal.crime.count %}
-                            <table class="table col-12">
+                            <table class="table col-12 table-responsive table-responsive-sm table-responsive-xl">
                               {% for crime in criminal.crime.all %}
                                 <tr>
                                   <td class="label">Case No:</td><td>{{ crime.pk }}</td>

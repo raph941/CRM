@@ -48,7 +48,7 @@ class Criminal(models.Model):
     occupation = models.CharField(max_length=50, blank=True, null=True)
     wanted_status = models.CharField(
         max_length=50, choices=STATUS, default=NOT_WANTED)
-    description = models.CharField(max_length=50, blank=True, null=True)
+    description = models.CharField(max_length=550, blank=True, null=True)
     state_of_origin = models.CharField(max_length=50, choices=STATE, null=True, blank=True)
     foot_size = models.CharField(max_length=50, blank=True, null=True)
     place_of_arrest = models.CharField(max_length=255, blank=True, null=True)
