@@ -1,3 +1,7 @@
+[![Python Version](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/)
+[![Django Version](https://img.shields.io/badge/django%20versions-2.1.15-blue.svg)](https://www.djangoproject.com/)
+
+
 # CRM
 this is a crime and criminal record management system, it is a personal project, built for law enforcement agencies especially here in Nigeria in ordwe to automate the existing manual process of storing crime and criminal records.
 
@@ -10,6 +14,12 @@ this is a crime and criminal record management system, it is a personal project,
     you can login as admin: username: admin1234, password:adminaccountpass,
     as regularuser: username:user12345, password:nigerians
 
+### Environmental Variables
+
+| Name | Required | Value |
+|------|----------|---------|
+| `SECRET_KEY` | :heavy_check_mark: | String, standard Django setting |
+| `DEBUG` | :heavy_check_mark: | Boolean, standard Django setting |
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -19,7 +29,7 @@ python 3.6.0
 django 2.1
 
 ## installing
-    you can simply download a copy of the project at https://github.com/raph941/CRM
+    clone the project here https://github.com/raph941/CRM.git
 
 ## Create virtual environment
     pip install virtualenv 
