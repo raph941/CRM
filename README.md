@@ -1,7 +1,11 @@
 # CRM
 this is a crime and criminal record management system, it is a personal project, built for law enforcement agencies especially here in Nigeria in ordwe to automate the existing manual process of storing crime and criminal records.
 
-# Live Preview
+![CriminalApp Image](https://res.cloudinary.com/raph941/image/upload/v1604642174/Github%20/CRM/slide1_vcpauy.png)
+![CriminalApp Image](https://res.cloudinary.com/raph941/image/upload/v1604642174/Github%20/CRM/slide3_a16i7p.png)
+
+
+# Live: 
     the app is hosted on "http://criminalrecord.herokuapp.com"
     you can login as admin: username: admin1234, password:adminaccountpass,
     as regularuser: username:user12345, password:nigerians
