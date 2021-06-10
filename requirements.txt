@@ -2,7 +2,7 @@ astroid==2.2.5
 autopep8==1.4.4
 colorama==0.4.1
 dj-database-url==0.5.0
-Django==2.1.15
+Django==2.2.24
 django-crispy-forms==1.7.2
 django-gravatar==0.1.0
 django-widget-tweaks==1.4.3
